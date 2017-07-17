@@ -22,27 +22,26 @@ class DataManager(object):
 
         for directory in self._alignment_dirs:
             for filename in os.listdir(directory):
-                gene_name = self._filename_to_gene_name(filename)
-                if gene_name not in gene_map:
-                    gene_map[gene_name] = {
-                        'files': []
-                    }
+                if not filename[0] == '.':
+                    gene_name = self._filename_to_gene_name(filename)
+                    if gene_name not in gene_map:
+                        gene_map[gene_name] = {
+                            'files': []
+                        }
 
-                gene_map[gene_name]['files'].append(os.path.join(directory, filename))
+                    gene_map[gene_name]['files'].append(
+                        os.path.join(directory, filename))
 
         #pprint(gene_map)
         #print(len(gene_map))
         self._gene_map = gene_map
 
     def _filename_to_gene_name(self, filename):
-        return filename[:filename.index('.')]
+        index = filename.index('.')
+        return filename[:index]
 
 
 class Api(object):
-
-    @cherrypy.expose
-    def yolo(self):
-        return "Hi there"
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
