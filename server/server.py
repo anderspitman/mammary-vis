@@ -57,9 +57,11 @@ class Api(object):
 
 if __name__ == '__main__':
 
+    MAMMARY_DIR = 'MammaryGenes'
+
     alignment_dirs = [
-        os.path.join(os.path.pardir, os.path.pardir, 'alignments'),
-        os.path.join(os.path.pardir, os.path.pardir, 'aln_cds'),
+        os.path.join(MAMMARY_DIR, 'alignments'),
+        os.path.join(MAMMARY_DIR, 'aln_cds'),
     ]
     data_manager = DataManager(alignment_dirs)
 
