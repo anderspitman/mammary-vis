@@ -18,13 +18,14 @@ class DataManager(object):
     def get_metadata(self):
         with open(os.path.join(self._results_dir, 'codeml.csv')) as f:
             metadata = []
-            reader = csv.DictReader(f)
+            reader = csv.reader(f)
+            metadata = {
+                'column_names': next(reader),
+                'rows': []
+            }
             for row in reader:
-                #meta = { x: row[x] for x in 
-                #    ['ensembl_gene', 'ensembl_transcript', 'display_name' ]
-                #}
-                #metadata.append(meta)
-                metadata.append(row)
+                metadata['rows'].append(row)
+
         return metadata
 
     def get_gene_list(self):
