@@ -5,15 +5,17 @@
 
     var GenesList = {
         list: [],
+        headers: [],
         fetch: function(){
             return m.request({
                 method: "GET",
-                url: "http://localhost:8080/genes",
+                url: "http://localhost:8080/metadata",
             })
             .then(function(genes) {
-                GenesList.list = genes.map(function(item){
-                    return [item]
-                })
+                console.log(genes[0]),
+                GenesList.headers = genes[0],
+                GenesList.list = genes[1],
+                console.log(GenesList.list[0])
             })
         }
     }
@@ -39,14 +41,13 @@
             $(vnode.dom).append('<table id="genesTable" class="display"></table>');  
         },
         onupdate: function(vnode){
+            console.log(GenesList.list.ensembl_gene),
             $('#genesTable').DataTable({
                 data: GenesList.list,
-                columns: [
-                    {title:"REF"}
-                ],
                 columnDefs: [
                     {
-                        targets:0,  //column to be applied at
+                        targets: 0,
+                        title:GenesList.headers[0],
                         render: function(data,type,row,meta){
                             return '<a href="#!/'+data+'">'+data+'</a>';
                         },
