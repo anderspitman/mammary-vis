@@ -36,7 +36,7 @@
     var DataT = {
         oninit: GenesList.fetch,
         oncreate: function(vnode){
-            $(vnode.dom).append('<a class="toggle-vis" col="0">Ensembl Gene</a> - <a class="toggle-vis" col="1">Ensembl Transcript</a> - <a class="toggle-vis" col="2">Display Name</a> - <a class="toggle-vis" col="3">Reason</a> - <a class="toggle-vis" col="4">Codemlid</a>');
+            $(vnode.dom).append('<div align="center"><a class="toggle-vis" col="0">Ensembl Gene</a> - <a class="toggle-vis" col="1">Ensembl Transcript</a> - <a class="toggle-vis" col="2">Display Name</a> - <a class="toggle-vis" col="3">Reason</a> - <a class="toggle-vis" col="4">Codemlid</a></div>');
             $(vnode.dom).append('<table id="genesTable" class="display"></table>');
             $('a.toggle-vis').on('click',function(e){
                 console.log("e");
